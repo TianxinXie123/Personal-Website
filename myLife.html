@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Daily Life - Tianxin Xie</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+
+<body>
+
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">Tianxin's Space</div>
+
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li>
+                    <a href="https://github.com/TianxinXie123" target="_blank" rel="noopener noreferrer">
+                        My Project
+                    </a>
+                </li>
+                <li><a href="myLife.html" class="active">My Life</a></li>
+                <li><a href="javascript:void(0)" onclick="openModal()">My Resume</a></li>
+            </ul>
+            <div class="nav-actions" style="min-width: 50px;"></div>
+
+        </div>
+    </nav>
+
+    <div id="resumeModal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeModal()">&times;</span>
+            <iframe src="assets/files/resume.pdf" width="100%" height="600px"></iframe>
+        </div>
+    </div>
+
+    <header class="top-banner life-banner"></header>
+
+    <div class="page-wrapper life-layout">
+
+        <aside class="sidebar-about rpg-sidebar">
+            <div class="card rpg-card">
+                <div class="rpg-header">
+                    <img src="assets/photo/avatar-3.jpg" alt="Pixel Avatar" class="pixel-avatar">
+                    <div class="rpg-title">
+                        <h3>Player: Tianxin</h3>
+                        <span class="rpg-badge">Lv.18 Developer</span>
+                    </div>
+                </div>
+
+                <hr class="rpg-divider">
+
+                <div class="rpg-stats">
+                    <h4>⚡ Core Stats</h4>
+
+                    <div class="stat-item">
+                        <div class="stat-icon"><i class="fas fa-book"></i></div>
+                        <div class="stat-info">
+                            <span class="stat-name">Wisdom</span>
+                            <span class="stat-value tag-pink">98 Exp</span>
+                        </div>
+                    </div>
+
+                    <div class="stat-item">
+                        <div class="stat-icon"><i class="fas fa-dumbbell"></i></div>
+                        <div class="stat-info">
+                            <span class="stat-name">Strength</span>
+                            <span class="stat-value tag-orange">79 Exp</span>
+                        </div>
+                    </div>
+
+                    <div class="stat-item">
+                        <div class="stat-icon"><i class="fas fa-brain"></i></div>
+                        <div class="stat-info">
+                            <span class="stat-name">Sanity</span>
+                            <span class="stat-value tag-blue">115 Exp</span>
+                        </div>
+                    </div>
+
+                    <div class="stat-item">
+                        <div class="stat-icon"><i class="fas fa-coins"></i></div>
+                        <div class="stat-info">
+                            <span class="stat-name">Fortune</span>
+                            <span class="stat-value tag-gold">Locked</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </aside>
+
+        <main class="main-content life-content">
+            <section class="life-header">
+                <h1 class="main-title">Welcome to my daily life !</h1>
+                <br><br>
+                <p class="quote">"Recording every level-up moment in the real world."</p>
+            </section>
+
+            <div class="bubble-container">
+
+                <div class="bubble bubble-lg pos-1"
+                    style="background-image: url('assets/cosplay_bg.jpg'); cursor: pointer;"
+                    onclick="window.location.href='cosplay.html'">
+                    <div class="bubble-overlay">
+                        <h3>Cosplay</h3>
+                        <p>Role Playing</p>
+                    </div>
+                </div>
+
+                <div class="bubble bubble-xs bubble-solid-pink pos-2"></div>
+
+                <div class="bubble bubble-md pos-3" style="background-image: url('assets/cooking_bg.jpg'); 
+                cursor: pointer;" onclick="window.location.href='cooking.html'">
+                    <div class="bubble-overlay">
+                        <h3>Cooking</h3>
+                        <p>Lv. Max Chef</p>
+                    </div>
+                </div>
+
+                <div class="bubble bubble-sm pos-4" style="background-image: url('assets/event_bg.jpg');
+                cursor: pointer;" onclick="window.location.href='event.html'">
+                    <div class="bubble-overlay">
+                        <h3>Events</h3>
+                        <p>Organizer</p>
+                    </div>
+                </div>
+
+                <div class="bubble bubble-xs bubble-solid-blue pos-5"></div>
+
+                <div class="bubble bubble-md bubble-text pos-6">
+                    <div class="text-content">
+                        <h3>To Be<br>Continued...</h3>
+                        <span>Loading 99%</span>
+                    </div>
+                </div>
+
+            </div>
+        </main>
+    </div>
+
+    <script src="index.js"></script>
+</body>
+
+</html>

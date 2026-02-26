@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tianxin Xie's Personal Website</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">Tianxin's Space</div>
+
+            <ul class="nav-links">
+                <li><a href="#">Home</a></li>
+                <li>
+                    <a href="https://github.com/TianxinXie123" target="_blank" rel="noopener noreferrer">
+                        My Project
+                    </a>
+                </li>
+
+                <li><a href="myLife.html">My Life</a></li>
+                <li><a href="javascript:void(0)" onclick="openModal()">My Resume</a></li>
+
+                <div id="resumeModal" class="modal">
+                    <div class="modal-content">
+                        <span class="close-btn" onclick="closeModal()">&times;</span>
+                        <iframe src="assets/files/resume.pdf" width="100%" height="600px"></iframe>
+                    </div>
+                </div>
+            </ul>
+
+            <div class="nav-actions">
+                <button id="dark-mode-toggle" class="mode-toggle-btn">
+                    <span class="icon">🌙</span>
+                </button>
+            </div>
+        </div>
+    </nav>
+    <header class="top-banner"></header>
+
+    <div class="page-wrapper">
+        <aside class="sidebar-about">
+            <div class="card profile-card">
+                <img src="assets/photo/avatar.jpg" alt="Tianxin Xie" class="profile-avatar">
+                <h2>Tianxin Xie</h2>
+                <p class="bio-text">
+                    Computer Engineering <br><br>
+                    I firmly believe that coding, much like culinary arts or sports, can be honed into an art form
+                    through tireless practice.
+                </p>
+                <div class="social-tags">
+                    <span>#Engineering</span>
+                    <span>#Cosplay</span>
+                    <span>#UWaterloo</span>
+                </div>
+            </div>
+        </aside>
+
+        <main class="main-content">
+            <section class="site-header">
+                <h1 class="main-title">Tianxin Xie's Digital Garden</h1>
+                <p class="quote">“Searching for my own stars within a million lines of code”</p>
+            </section>
+
+            <div class="announcement-bar">
+                <span class="icon">🔔</span>
+                <b>Announcement: </b>Currently finding the co-op. Welcome to explore my personal projects and
+                experiences
+                !
+            </div>
+
+            <div class="bottom-grid">
+                <section class="projects-section">
+                    <h3 class="section-label">My Projects</h3>
+                    <div class="social-links">
+                        <a href="https://github.com/TianxinXie123" target="_blank" rel="noopener noreferrer">
+                            <img src="assets/photo/GitHub-logo.jpg" alt="GitHub logo" class="social-icon">
+                        </a>
+                    </div>
+                    <div class="project-card"
+                        onclick="openVideoModal('https://www.youtube.com/embed/zrXouChxBLc?si=u0mVD-6SohNW7oQg')">
+                        <div class="project-thumb" style="background-image: url('assets/photo/Mario-bg.jpg');"></div>
+
+                        <h4 class="project-title">Super Pac-man Bros Game</h4>
+
+                        <p>A Java MCV structured mini-game inspired by Pac-Man and Mario, featuring maze navigation and
+                            coin collection.</p>
+                    </div>
+
+                    <div class="project-card">
+                        <div class="project-thumb" style="background-image: url('assets/photo/library.jpg')"></div>
+                        <h4 class="project-title">IEEE Document Knowledge Base </h4>
+                        <p>A Python intelligent research assistant that transforms complex academic papers into direct
+                            answers
+                        </p>
+                    </div>
+                    <div class="project-card">
+                        <div class="project-thumb" style="background-image: url('assets/photo/laptop.jpg')"></div>
+                        <h4 class="project-title">Laptop Store</h4>
+                        <p>A Java Swing program that recommends suitable laptop models based on user requirements
+                        </p>
+                    </div>
+                </section>
+                <div id="videoModal" class="modal">
+                    <div class="modal-content">
+                        <span class="close-btn" onclick="closeVideoModal()">&times;</span>
+                        <div class="video-container">
+                            <iframe id="projectVideo" width="100%" height="500px" frameborder="0"
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                allowfullscreen></iframe>
+                        </div>
+                    </div>
+                </div>
+
+                <section class="timeline-section">
+                    <h3 class="section-label">Experience</h3>
+                    <div class="timeline-container">
+                        <div class="timeline-item">
+                            <span class="dot"></span>
+                            <span class="time">2022</span>
+                            <p>Came to Canada and began studying abroad life</p>
+                        </div>
+                        <div class="timeline-item">
+                            <span class="dot"></span>
+                            <span class="time">2023</span>
+                            <p>Working hard in high school</p>
+                        </div>
+                        <div class="timeline-item">
+                            <span class="dot"></span>
+                            <span class="time">2024</span>
+                            <p>Starting my first personal project</p>
+                        </div>
+                        <div class="timeline-item">
+                            <span class="dot"></span>
+                            <span class="time">2025</span>
+                            <p>Successfully admitted to the Engineering Department of the University of Waterloo</p>
+                        </div>
+                        <div class="timeline-item">
+                            <span class="dot"></span>
+                            <span class="time">2026</span>
+                            <p>Start looking for my first coop job</p>
+                        </div>
+                        <div class="timeline-item">
+                            <span class="dot"></span>
+                            <span class="time">202?</span>
+                            <p>To be continued...</p>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </main>
+    </div>
+
+    <footer id="contact-footer">
+        <div class="footer-content">
+            <h2>Contact Information</h2>
+            <p>Tianxin Xie</p>
+            <p>Email : <a href="t23xie@uwaterloo.ca" id="email-link">your.email@uwaterloo.ca</a></p>
+            <p>Phone : <span id="phone-number">+1 (437) 269-8167</span></p>
+            <p>School : University of Waterloo, 200 University Ave W, Waterloo, ON N2L 3G1, Canada</p>
+        </div>
+    </footer>
+    <script src="index.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Events & Awards - Tianxin Xie</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body class="event-body">
+    <div class="stars-overlay"></div>
+
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">Tianxin's Space</div>
+
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li>
+                    <a href="https://github.com/TianxinXie123" target="_blank" rel="noopener noreferrer">
+                        My Project
+                    </a>
+                </li>
+                <li><a href="myLife.html" class="active">My Life</a></li>
+                <li><a href="javascript:void(0)" onclick="openModal()">My Resume</a></li>
+
+                <div id="resumeModal" class="modal">
+                    <div class="modal-content">
+                        <span class="close-btn" onclick="closeModal()">&times;</span>
+                        <iframe src="assets/files/resume.pdf" width="100%" height="600px"></iframe>
+                    </div>
+                </div>
+            </ul>
+
+            <div class="nav-actions">
+                <button id="dark-mode-toggle" class="mode-toggle-btn">
+                    <span class="icon">🌙</span>
+                </button>
+            </div>
+        </div>
+    </nav>
+    <header class="top-banner life-banner"></header>
+
+    <div class="page-wrapper"
+        style="flex-direction: column; align-items: center; margin-top: -60px; position: relative; z-index: 2;">
+
+        <section class="site-header event-header">
+            <h1 class="main-title text-light">My Events & Awards</h1>
+            <p class="quote text-light">“More than just a student, I am an active organizer dedicated to building
+                vibrant communities around shared interests. I take pride in channeling my creativity into impactful
+                events, bridging the gap between personal passion and community engagement to make a meaningful
+                difference.”</p>
+        </section>
+
+        <div class="zigzag-timeline">
+            <div class="timeline-row left">
+                <div class="timeline-content">
+                    <div class="timeline-date">2022.12.31</div>
+                    <h3>Come to Canada</h3>
+                    <div class="timeline-location">
+                        <span class="icon">📍</span> Toronto Pearson International Airport
+                    </div>
+                    <p>Started my study abroad journey in Canada.</p>
+                    <div class="img-placeholder">
+                        <img src="assets/photo/airport.jpeg" alt="Come to Canada Event Image Placeholder">
+                    </div>
+                </div>
+            </div>
+
+            <div class="timeline-row right">
+                <div class="timeline-content">
+                    <div class="timeline-date">2023.04.05</div>
+                    <h3>CSMC Top 25%</h3>
+                    <p>Canadian Senior Mathematics Contest - Top 25%.</p>
+                    <div class="img-placeholder">
+                        <img src="assets/photo/math contest.jpg" alt="CSMC Image Placeholder">
+                    </div>
+                </div>
+            </div>
+
+            <div class="timeline-row left">
+                <div class="timeline-content">
+                    <div class="timeline-date">2025.03.14</div>
+                    <h3>Organized Anime Random Dance at CMC Convention</h3>
+                    <div class="timeline-location">
+                        <span class="icon">📍</span>Metro Toronto Convention Centre
+                    </div>
+                    <p>Led a high-traffic non-profit roadshow in the heart of Toronto, successfully mobilizing the
+                        public and earning widespread acclaim.</p>
+                    <div class="img-placeholder">
+                        <img src="assets/photo/cmc-2025.png" alt="CMC Random Dance Image Placeholder">
+                    </div>
+                </div>
+            </div>
+            <div class="timeline-row right">
+                <div class="timeline-content">
+                    <div class="timeline-date">2025.8.28</div>
+                    <h3>Complete a solo trip</h3>
+                    <div class="timeline-location">
+                        <span class="icon">📍</span>Shanghai, Chengdu, Beijing, Qingdao, Guangzhou, Hongkong
+                    </div>
+                    <p>Independently planned and executed a comprehensive 30-day solo expedition across 7 major Chinese
+                        cities, managing all logistics, scheduling, and budgeting with zero oversight.</p>
+                    <div class="img-placeholder">
+                        <img src="assets/photo/travel.jpg" alt="Anime Fiesta Image">
+                    </div>
+                </div>
+            </div>
+
+            <div class="timeline-row left">
+                <div class="timeline-content">
+                    <div class="timeline-date">2025.10.3</div>
+                    <h3>Organized Anime Random Dance at FestM Convention</h3>
+                    <div class="timeline-location">
+                        <span class="icon">📍</span>Toronto Congress Centre
+                    </div>
+                    <p>Orchestrated a first-of-its-kind official partnership with a major anime convention, successfully
+                        organizing a live performance for an audience of 10,000+. The event's digital coverage garnered
+                        over 100,000 views across social media platforms.</p>
+                    <div class="img-placeholder">
+                        <img src="assets/photo/2025-FestM.png" alt="CMC Random Dance Image Placeholder">
+                    </div>
+                </div>
+            </div>
+
+            <div class="timeline-row right">
+                <div class="timeline-content">
+                    <div class="timeline-date">2026.01.31</div>
+                    <h3>Organized Anime Random Dance at Anime Fiesta</h3>
+                    <p>Facilitated a strategic cultural exchange partnership with Anime Fiesta, curating a diverse
+                        showcase featuring international performers from various backgrounds.</p>
+                    <div class="img-placeholder">
+                        <img src="assets/photo/2026-AF.jpg" alt="Anime Fiesta Image">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="index.js"></script>
+</body>
+
+</html>

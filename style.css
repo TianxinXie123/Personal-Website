@@ -1,0 +1,1037 @@
+/* 全局变量：紫色可爱风 */
+:root {
+    --bg-color: #fbf5ff;
+    --card-bg: #ffffff;
+    --main-purple: #b684fb;
+    --soft-purple: #dedaf7;
+    --deep-purple: #6c5ce7;
+    --text-color: #444444;
+    --subtitle-color: #888888;
+    --announcement-bg: #ddd8fe;
+    --border-color: #f0f0f0;
+    --radius: 25px;
+}
+
+/* --- Home Page Layout --- */
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Inter', 'PingFang SC', sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+body.dark-mode {
+    --bg-color: #1a1a2e;
+    --card-bg: #16213e;
+    --main-purple: #bb86fc;
+    --soft-purple: #2d2d44;
+    --deep-purple: #e2d5ff;
+    --text-color: #e0e0e0;
+    --subtitle-color: #b0b0b0;
+    --announcement-bg: #1f1f3d;
+    --border-color: #2d2d44;
+}
+
+/* 顶端 30% 的长条图片 */
+.top-banner {
+    width: 100%;
+    height: 30vh;
+    background-color: linear-gradient(rgba(0,0,0,0), rgba(88, 15, 167, 0.3)); 
+    background-image: url('assets/photo/index-bg.png');
+    background-size: cover;
+    background-position: center;
+}
+
+.navbar {
+    width: 100%;
+    height: 60px;
+    background-color: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(15px); /* 磨砂玻璃效果 */
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    border-bottom: 2px solid var(--soft-purple);
+    transition: background-color 0.3s;
+
+}
+
+/* 深色模式下的导航栏 */
+body.dark-mode .navbar {
+    background-color: rgba(26, 26, 46, 0.8);
+    border-bottom: 2px solid var(--border-color);
+}
+.social-tags{
+    color:#2575fc;
+}
+
+.nav-container {
+
+    max-width: 1200px;
+    margin: 0 auto;
+    height: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+}
+
+.nav-logo {
+    font-weight: bold;
+    color: var(--deep-purple);
+    font-size: 1.2rem;
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 30px;
+    margin: 0;
+    padding: 0;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: var(--text-color);
+    font-weight: 500;
+    transition: color 0.3s;
+}
+
+.nav-links a:hover {
+    text-shadow: 0.2px 0 0 currentColor, -0.2px 0 0 currentColor;
+    color: var(--deep-purple);
+}
+
+/* 调整按钮在导航栏的样式 */
+.mode-toggle-btn {
+    background: var(--soft-purple);
+    border: none;
+    padding: 8px 12px;
+    border-radius: 12px;
+    cursor: pointer;
+    font-size: 1.2rem;
+    transition: transform 0.2s;
+}
+
+.mode-toggle-btn:hover {
+    transform: scale(1.1);
+}
+/* 整体布局容器 */
+.page-wrapper {
+    display: flex;
+    max-width: 1200px;
+    margin: -50px auto 50px auto; /* 向上偏移，压在 Banner 上 */
+    gap: 25px;
+    padding: 0 20px;
+}
+
+/* 左侧 About Me：贯穿全高 */
+.sidebar-about {
+    flex: 0 0 300px; /* 固定宽度 */
+}
+
+.profile-card {
+    background: var(--card-bg);
+    padding: 30px;
+    border-radius: var(--radius);
+    box-shadow: 0 10px 30px rgba(162, 155, 254, 0.15);
+    position: sticky; /* 随着滚动悬停 */
+    top: 70px;
+}
+
+.avatar-placeholder {
+    width: 120px;
+    height: 120px;
+    background: var(--soft-purple);
+    border-radius: 50%;  
+    margin: 0 auto 20px auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 4px solid var(--main-purple);
+}
+
+/* 右侧主区域 */
+.main-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+
+/* 标题和公告 */
+.card, .site-header, .projects-section {
+    background-color: var(--card-bg);
+    padding: 25px;
+    border-radius: var(--radius);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    border: 1px solid var(--soft-purple); 
+}
+.timeline-section {
+    padding: 20px 15px; /* 减少左右内边距 */
+    background: var(--card-bg);
+    border-radius: var(--radius);
+    background-color: var(--card-bg);
+    border: 1px solid var(--soft-purple); /* 淡淡的紫色边框 */
+    transition: all 0.3s ease;
+}
+
+.main-title {
+    color: var(--main-purple);
+
+    margin: 0;
+}
+
+.announcement-bar {
+    background-color: var(--border-color); /* 紫色调 */
+    color: var(--deep-purple);
+    padding: 15px 30px;
+    border-radius: var(--radius);
+    font-weight: 500;
+    border-left: 8px solid var(--main-purple);
+}
+
+/* 下方两栏布局：项目 + 时间轴 */
+.bottom-grid {
+    display: grid;
+    grid-template-columns: 2.5fr 1fr;
+    
+    gap: 25px;
+}
+
+.section-label {
+    color: var(--main-purple);
+    border-bottom: 2px solid var(--soft-purple);
+    padding-bottom: 10px;
+    margin-top: 0;
+}
+
+/* 项目 Block 样式 */
+.project-card {
+    background: var(--soft-purple);
+    color: var(--text-color);
+    margin-bottom: 15px;
+    padding: 15px;
+    border-radius: 15px;
+    transition: transform 0.3s;
+    border: 2px solid var(--main-purple);
+    cursor: pointer;
+    text-decoration: none;
+}
+.project-title{
+    font-size: 1.2rem;
+    color: var(--deep-purple);
+    text-decoration: none;
+}
+
+.project-card:hover {
+    transform: translateY(-5deg);
+    box-shadow: 0 15px 40px rgba(162, 155, 254, 0.3);
+    border: 3px solid var(--main-purple);
+}
+
+.video-container {
+    position: relative;
+    padding-bottom: 56.25%;
+    height: 0;
+    overflow: hidden;
+}
+
+.video-container iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 10px;
+}
+
+.project-thumb {
+    height: 200px;
+    background:var(--card-bg);
+    border-radius: 15px 15px 15px 15px;
+    margin-bottom: 10px;
+    display: flex;
+
+    background-size: cover;    /* 图片自动铺满 */
+    background-position: center; /* 图片居中 */
+    background-repeat: no-repeat;
+    border-radius: 8px 8px 0 0; 
+    border: 2px solid var(--deep-purple);
+
+}
+
+/* 时间轴样式 */
+.timeline-container {
+    border-left: 2px dashed var(--main-purple);
+    margin-left: 5px;
+    padding-left: 15px;
+}
+
+.timeline-item {
+    position: relative;
+    margin-bottom: 20px;
+}
+
+.dot {
+    position: absolute;
+    left: -21px;
+    top: 5px;
+    width: 10px;
+    height: 10px;
+    background: var(--deep-purple);
+    border-radius: 50%;
+}
+
+.time {
+    font-weight: bold;
+    color: var(--deep-purple);
+    display: block;
+}
+.profile-card:hover, 
+.projects-section:hover, 
+.timeline-section:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 40px rgba(162, 155, 254, 0.3);
+    border-color: var(--main-purple);
+    border-width: 2px;
+}
+
+.profile-avatar {
+    width: 150px;         /* Set the width of your photo */
+    height: 150px;        /* Set the height of your photo */
+    border-radius: 50%;   /* Make it a circle */
+    object-fit: cover;    /* Ensure the image doesn't stretch */
+    border: 6px solid var(--main-purple); /* Optional: add a white border */
+    display: block;
+    margin: 0 auto 1rem;  /* Center the image and add space below */
+}
+
+/* Modal 容器 / Modal Container */
+.modal {
+    display: none; /* 默认隐藏 / Hidden by default */
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.6); /* 半透明背景 / Semi-transparent background */
+}
+
+/* Modal 内容框 / Modal Content Box */
+.modal-content {
+    position: relative;
+    background-color: var(--bg-color);
+    margin: 5% auto; /* 距离顶部 5% / 5% from top */
+    padding: 20px;
+    width: 90%; /* 宽度 / Width */
+    max-width: 900px;
+    border-radius: 8px;
+}
+
+/* 关闭按钮 / Close Button */
+.close-btn {
+    position: absolute;
+    right: 20px;
+    top: 15px;
+    color: var(--border-color);
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.close-btn:hover {
+    color: var(--deep-purple); 
+}
+
+/*-----foot--------*/
+#contact-footer {
+    background-color: var(--main-purple);
+    color: var(--bg-color);
+    padding: 20px 20px;
+
+    font-family: Arial, sans-serif;
+    margin-top: 50px;
+}
+
+.footer-content h2 {
+    color: var(--card-bg);
+    margin-bottom: 20px;
+    font-size: 24px;
+}
+
+.footer-content p {
+    margin: 10px 0;
+    font-size: 13px;
+    line-height: 1;
+}
+
+#email-link {
+    color: var(--card-bg);
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s ease;
+}
+
+#email-link:hover {
+    text-decoration: underline;
+    color: var(--bg-color);
+}
+
+#phone-number {
+    cursor: pointer;
+    color: var(--card-bg);
+    font-weight: bold;
+    text-decoration: underline;
+    transition: color 0.3s ease;
+}
+
+#phone-number:hover {
+    color: var(--bg-color);
+}
+/* --- My Life Page Layout --- */
+
+/* 布局调整：让左侧占20%左右，右侧自适应 */
+.life-layout {
+    display: flex;
+    gap: 40px;
+    margin-top: -60px; /* 拉上去覆盖一点 Banner */
+    position: relative;
+    z-index: 2;
+}
+
+.rpg-sidebar {
+    flex: 0 0 22%; /* 宽度固定 */
+}
+
+.life-content {
+    flex: 1; /* 占据剩余空间 */
+}
+
+/* Banner 特殊图片 (可选) */
+.life-banner {
+   background: linear-gradient(rgba(0,0,0,0), rgba(88, 15, 167, 0.3)),
+   url('assets/photo/myLife.jpg') center/cover no-repeat;
+
+    height: 250px;
+}
+
+/* --- RPG Profile Card (左侧属性卡) --- */
+.rpg-card {
+    background: white;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    font-family: 'Segoe UI', sans-serif;
+}
+
+.rpg-header {
+    text-align: center;
+}
+
+.pixel-avatar {
+    width: 150px;
+    height: 150px;
+    border-radius: 8px; /* 像素风不需要完全圆形 */
+    object-fit: cover;
+    border: 2px solid #eee;
+    margin-bottom: 10px;
+}
+
+.rpg-title h3 {
+    font-size: 1.1rem;
+    margin: 5px 0;
+}
+
+.rpg-badge {
+    background-color: #eee;
+    font-size: 0.8rem;
+    padding: 2px 8px;
+    border-radius: 4px;
+    color: #555;
+}
+
+.rpg-divider {
+    border: 0;
+    border-top: 1px dashed #ddd;
+    margin: 15px 0;
+}
+
+.rpg-stats h4 {
+    font-size: 0.9rem;
+    color: #888;
+    margin-bottom: 15px;
+}
+
+/* 属性条目样式 */
+.stat-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+    gap: 10px;
+}
+
+.stat-icon {
+    width: 32px;
+    height: 32px;
+    background: #f8f9fa;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #555;
+}
+
+.stat-info {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+
+.stat-name {
+    font-size: 0.85rem;
+    font-weight: bold;
+    color: #333;
+}
+
+/* 模仿图片中的彩色 Tag */
+.stat-value {
+    font-size: 0.75rem;
+    display: inline-block;
+    padding: 2px 6px;
+    border-radius: 4px;
+    margin-top: 2px;
+    width: fit-content;
+}
+/* --- Quote Text Style --- */
+.quote {
+    font-style: italic;           /* 斜体 / Italic font style */
+    color:var(--deep-purple);               /* 紫色 (或者用 var(--deep-purple)) / Purple color */
+    font-size: 1.1rem;            /* 稍微大一点的字号 / Slightly larger font size */
+    margin-top: 10px;             /* 顶部间距 / Top margin */              
+}
+
+.tag-pink { background: #ffe2e5; color: #ff5c7c; }
+.tag-orange { background: #fff4de; color: #ff942e; }
+.tag-blue { background: #e3f2fd; color: #42a5f5; }
+.tag-gold { background: #fff9c4; color: #fbc02d; }
+
+/* --- Bubbles Section (右侧圆球) --- */
+/* --- Bubbles Section (紧凑簇状布局) --- */
+.bubble-container {
+    position: relative;        /* 设为相对定位，作为坐标原点 */
+    width: 100%;
+    max-width: 800px;          /* 限制整体宽度 */
+    height: 500px;             /* 给足够的高度来容纳这些球 */
+    margin: 0px auto;         /* 居中 */
+  
+}
+
+/* 气泡基础样式 (保留原样) */
+.bubble {
+    border-radius: 50%;
+    background-size: cover;
+    background-position: center;
+    position: absolute;        /* 关键修改：绝对定位 */
+    overflow: hidden;
+    cursor: pointer;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); /* 更弹性的动画 */
+    box-shadow: 0 10px 25px rgba(207, 104, 255, 0.103);
+  
+}
+
+/* 悬停效果 (保留并增强层级) */
+.bubble:hover {
+    transform: scale(1.1);     /* 放大一点点 */
+    box-shadow: 0 20px 40px rgba(0,0,0,0.25);
+    z-index: 20;               /* 悬停时必须在最上层 */
+}
+
+/* --- 精确坐标定位 (复刻手绘图布局) --- */
+
+/* 1. Cosplay (左上大球) */
+.pos-1 {
+    top: 10px;
+    left: 20px;
+    z-index: 2;
+    background-color:#ff5c7c;
+}
+
+/* 2. 装饰粉球 (夹在 Cosplay 和 Cooking 之间) */
+.pos-2 {
+    top: 290px;
+    left: 0px;
+    z-index: 1;
+}
+
+/* 3. Cooking (中间位置，稍微靠下，压住一点大球) */
+.pos-3 {
+    background-color: #ff942e;
+    top: 380px;
+    left: 240px; /* 紧贴大球右侧 */
+    z-index: 3;  /* 层级较高 */
+}
+
+/* 4. Events (右上，稍微分离) */
+.pos-4 {
+     background-color: #42a5f5;
+    right: 180px; /* 靠右 */
+    z-index: 2;
+}
+
+/* 5. 装饰蓝球 (填补中间缝隙) */
+.pos-5 {
+    top: 230px;
+    left: 400px;
+    z-index: 1;
+}
+
+/* 6. To Be Continued (右下，虚线球) */
+.pos-6 {
+    top: 220px;
+    right: 40px;
+    z-index: 2;
+}
+
+/* --- 尺寸定义 (保留原样) --- */
+.bubble-lg { width: 360px; height: 360px; }
+.bubble-md { width: 260px; height: 260px; }
+.bubble-sm { width: 200px; height: 200px; }
+
+.bubble-xs { width: 50px ;  height: 50px;}
+.bubble-xs:hover { transform: scale(1.1); }
+
+/* --- 颜色与内容样式 (保留原样) --- */
+.bubble-solid-pink { background-color:var(--deep-purple); opacity: 0.9; }
+.bubble-solid-blue { background-color: var(--main-purple); opacity: 0.9; }
+
+.bubble-text {
+    background-color: #f9f9f9;
+    border: 3px dashed #ccc;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: #888;
+}
+
+.text-content h3 {
+    font-size: 1.2rem;
+    margin-bottom: 5px;
+    font-family: 'Courier New', monospace;
+}
+.text-content span {
+    font-size: 0.8rem;
+    background: #eee;
+    padding: 2px 8px;
+    border-radius: 10px;
+}
+
+.bubble-overlay {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: rgb(184, 151, 250);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+.bubble:hover .bubble-overlay { opacity: 1; }
+
+/* --- 移动端适配 (重要！) --- */
+/* 手机屏幕太小，绝对定位会乱，所以变回竖排 */
+@media (max-width: 768px) {
+    .bubble-container {
+        height: auto;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+    }
+    .bubble {
+        position: relative; /* 恢复相对定位 */
+        top: auto !important;
+        left: auto !important;
+        right: auto !important;
+        bottom: auto !important;
+    }
+    .bubble-xs { display: none; /* 手机上隐藏装饰小球，保持整洁 */ }
+}
+/*------------------cosplay-------------*/
+.image-wrapper {
+    width: 100%;
+    height: 100%;
+    min-height: 300px;
+    background-color: var(--border-color);
+    border-radius: 5px;
+    overflow: hidden;
+    position: relative;
+}
+
+.image-wrapper img {
+    width: 100%;
+    height: auto;
+    display: block;
+    opacity: 1;
+    transition: opacity 0.3s ease-in-out;
+}
+
+.skeleton img {
+    opacity: 0;
+}
+
+.skeleton::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        90deg,
+        var(--border-color) 0px,
+        var(--soft-purple) 50%,
+        var(--border-color) 100%
+    );
+    background-size: 200% 100%;
+    animation: shimmer 1.5s infinite linear;
+}
+
+@keyframes shimmer {
+    0% {
+        background-position: -200% 0;
+    }
+    100% {
+        background-position: 200% 0;
+    }
+}
+
+.gallery-header {
+    text-align: center;
+    padding: 80px;
+    background-image: linear-gradient(rgba(245, 245, 245, 0.3), rgba(245, 245, 245, 0.8)), url('assets/photo/cosplay-bg.jpg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+}
+.social-links {
+    margin-top: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.social-icon {
+    width: 35px;
+    height: 35px;
+    border-radius: 8px;
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+
+.social-icon:hover {
+    transform: scale(1.1);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.gallery-title {
+   
+    font-size: 4rem;
+    color: var(--soft-purple);
+    -webkit-text-stroke: 3px var(--deep-purple);
+   
+}
+
+.gallery-subtitle {
+    font-size: 1rem;
+    font-weight: bold;
+    color: var(--text-color);
+    border-width: 2px;
+    -webkit-text-stroke: 0.5px var(--deep-purple);
+}
+
+.gallery-container {
+    column-count: 4;
+    column-gap: 20px;
+    padding: 40px;
+    max-width: 1200px;
+    margin: 0 auto;
+    background-color: #f5f5f5;
+    background-color: var(--bg-color);
+}
+
+.gallery-item {
+    break-inside: avoid;
+    margin-bottom: 20px;
+    background-color: #fff;
+    border-radius: 5px;
+    overflow: hidden;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.gallery-item img {
+    width: 100%;
+    display: block;
+}
+
+.gallery-info {
+    padding: 15px;
+}
+
+.gallery-info h4 {
+    margin: 0 0 10px 0;
+    font-size: 1rem;
+    color: #333;
+}
+
+.gallery-meta {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.8rem;
+    color: #999;
+}
+
+@media (max-width: 992px) {
+    .gallery-container {
+        column-count: 3;
+    }
+}
+
+@media (max-width: 768px) {
+    .gallery-container {
+        column-count: 2;
+    }
+}
+
+@media (max-width: 480px) {
+    .gallery-container {
+        column-count: 1;
+    }
+}
+
+/*cooking*/
+.like-btn {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    font-size: 1.1rem;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    color: var(--subtitle-color);
+    transition: transform 0.2s;
+}
+.cooking-banner{
+    background: linear-gradient(rgba(0,0,0,0), rgba(88, 15, 167, 0.3)),
+   url('assets/photo/cooking-banner.jpg') center/cover no-repeat;
+
+    height: 250px;
+}
+.like-btn:hover {
+    transform: scale(1.1);
+}
+
+.like-btn.liked {
+    color: #ff5c7c;
+}
+
+/*-----------events---------*/
+.zigzag-timeline {
+    position: relative;
+    max-width: 900px;
+    width: 100%;
+    margin: 20px auto;
+    padding: 20px 0;
+}
+
+.zigzag-timeline::after {
+    content: '';
+    position: absolute;
+    width: 4px;
+    background-color: var(--main-purple);
+    top: 0;
+    bottom: 0;
+    left: 50%;
+    margin-left: -2px;
+    border-radius: 2px;
+}
+
+.timeline-row {
+    padding: 10px 40px;
+    position: relative;
+    background-color: inherit;
+    width: 50%;
+    box-sizing: border-box;
+}
+
+.timeline-row::after {
+    content: '';
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    right: -12px;
+    background-color: var(--bg-color);
+    border: 4px solid var(--deep-purple);
+    top: 20px;
+    border-radius: 50%;
+    z-index: 1;
+    transition: background-color 0.3s ease;
+}
+
+.left {
+    left: 0;
+}
+
+.right {
+    left: 50%;
+}
+
+.right::after {
+    left: -16px;
+}
+
+.timeline-content {
+    padding: 15px 25px;
+    background-color: var(--card-bg);
+    border-radius: var(--radius);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    border: 1px solid var(--soft-purple);
+    position: relative;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+}
+
+.timeline-content:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 40px rgba(162, 155, 254, 0.3);
+    border-color: var(--main-purple);
+}
+
+.timeline-date {
+    display: inline-block;
+    color: white;
+    background-color: var(--main-purple);
+    padding: 5px 15px;
+    border-radius: 20px;
+    font-weight: bold;
+    font-size: 0.9rem;
+    margin-bottom: 15px;
+}
+
+.timeline-content h3 {
+    color: var(--deep-purple);
+    margin: 0 0 10px 0;
+    font-size: 1.3rem;
+}
+
+.timeline-content p {
+    color: var(--text-color);
+    margin-bottom: 15px;
+    line-height: 1.5;
+}
+
+.img-placeholder {
+    width: 100%;
+    height: 140px;
+    background-color: var(--border-color);
+    border-radius: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    border: 2px dashed var(--main-purple);
+}
+.zigzag-timeline {
+    position: relative;
+    max-width: 1200px;
+    width: 100%;
+    margin: 20px auto;
+    padding: 20px 0;
+}
+
+.img-placeholder img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+@media screen and (max-width: 768px) {
+    .zigzag-timeline::after {
+        left: 31px;
+    }
+
+    .timeline-row {
+        width: 100%;
+        padding-left: 70px;
+        padding-right: 25px;
+    }
+
+    .timeline-row::after {
+        left: 19px;
+    }
+
+    .right {
+        left: 0%;
+    }
+}
+
+.event-body {
+    background: linear-gradient(to bottom, #050014 0%, #120038 50%, #5b1b8a 100%);
+    background-attachment: fixed;
+    transition: background-color 0.3s ease;
+}
+
+.stars-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 0;
+    pointer-events: none;
+    background-image: 
+        radial-gradient(2px 2px at 20px 30px, #ffffff, rgba(0,0,0,0)),
+        radial-gradient(2px 2px at 40px 70px, #ffffff, rgba(0,0,0,0)),
+        radial-gradient(2px 2px at 50px 160px, #ffffff, rgba(0,0,0,0)),
+        radial-gradient(2px 2px at 90px 40px, #ffffff, rgba(0,0,0,0)),
+        radial-gradient(2px 2px at 130px 80px, #ffffff, rgba(0,0,0,0)),
+        radial-gradient(2px 2px at 160px 120px, #ffffff, rgba(0,0,0,0));
+    background-repeat: repeat;
+    background-size: 200px 200px;
+    animation: twinkle 4s infinite alternate;
+}
+
+@keyframes twinkle {
+    0% { opacity: 0.4; transform: scale(0.98); }
+    100% { opacity: 1; transform: scale(1); }
+}
+
+.event-header {
+    width: 100%;
+    max-width: 900px;
+    text-align: center;
+    margin-bottom: 20px;
+    background-color: rgba(22, 33, 62, 0.6);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(182, 132, 251, 0.3);
+}
+
+.text-light {
+    color: #f8f7ff !important;
+}
+
+.event-body .timeline-content {
+    background-color: rgba(255, 255, 255, 0.9);
+}
+
+body.dark-mode.event-body .timeline-content {
+    background-color: rgba(22, 33, 62, 0.9);
+}
+.timeline-location{
+    font-size: 0.7rem;
+}
