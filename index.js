@@ -50,14 +50,28 @@ function closeVideoModal() {
 window.onclick = function(event) {
     let resumeModal = document.getElementById("resumeModal");
     let videoModal = document.getElementById("videoModal");
-    
+    let galleryModal = document.getElementById("galleryModal");
+
     if (event.target == resumeModal) {
         closeModal();
     }
     if (event.target == videoModal) {
         closeVideoModal();
     }
+    // Clicking the dimmed backdrop (anywhere that isn't a photo) closes the photo gallery
+    if (galleryModal && (event.target == galleryModal ||
+        event.target.classList.contains('gallery-modal-content') ||
+        event.target.classList.contains('photo-bubble-container'))) {
+        closeGalleryModal();
+    }
 }
+
+// Close the photo gallery with the Esc key
+document.addEventListener('keydown', function(event) {
+    if (event.key === 'Escape') {
+        closeGalleryModal();
+    }
+});
 
 
 function toggleLike(btnElement) {
@@ -93,13 +107,9 @@ const galleryData = [
     { title: "Sichuan Pepper Beef Pancakes", src: "assets/photo/beef_pancakes.jpg", likes: 88 },
     { title: "Salmon Avocado Sushi", src: "assets/photo/Salmon Avocado Sushi.jpg", likes: 15 },
     { title: "Teriyaki Chicken Leg Rice Bowl", src: "assets/photo/Teriyaki Chicken Leg Rice Bowl.jpg", likes: 15 },
-    { title: "Korean Kimchi Tofu Soup", src: "assets/photo/Korean Kimchi Tofu Soup.jpg", likes: 15 },
     { title: "Spicy Crawfish", src: "assets/photo/Spicy Crawfish.jpg", likes: 15 },
     { title: "Grilled Fish", src: "assets/photo/Grilled Fish.jpg", likes: 15 },
-    { title: "Candied Apples", src: "assets/photo/Candied Apples .jpg", likes: 15 },
-    { title: "Steamed Pork Ribs with Taro", src: "assets/photo/Steamed Pork Ribs with Taro.jpg", likes: 15 },
-    { title: "Mapo Tofu", src: "assets/photo/Mapo Tofu.jpg", likes: 15 },
-    { title: "Sweet and Sour Pork Ribs", src: "assets/photo/Sweet and Sour Pork Ribs.jpg", likes: 15 }
+    { title: "Mapo Tofu", src: "assets/photo/Mapo Tofu.jpg", likes: 15 }
 ];
 
 // Function to render the gallery items to the DOM
@@ -137,27 +147,15 @@ document.addEventListener('DOMContentLoaded', renderGallery);
 
 // Array holding all cosplay gallery image data
 const cosplayData = [
-    { src: "assets/photo/Tamaki-1.jpg", alt: "tamaki", title: "Tamaki cosplay", date: "9/15/2024", likes: 189 },
     { src: "assets/photo/Tamaki-2.jpg", alt: "Tamaki2", title: "My Real Hero Danny", date: "9/15/2024", likes: 395 },
     { src: "assets/photo/Tamaki-3.jpg", alt: "Tamaki3", title: "Green Table Decoration", date: "9/15/2024", likes: 138},
-    { src: "assets/photo/Undertaker-1.jpg", alt: "Undertaker1", title: "Green Table Decoration", date: "9/15/2024", likes: 1307 },
-    { src: "assets/photo/Undertaker-2.jpg", alt: "Undertaker2", title: "Green Table Decoration", date: "9/15/2024", likes: 1790 },
-    { src: "assets/photo/Undertaker-3.jpg", alt: "Undertaker3", title: "Green Table Decoration", date: "9/15/2024", likes: 217 },
     { src: "assets/photo/Undertaker-4.jpg", alt: "Undertaker4", title: "Undertaker4", date: "9/15/2024", likes: 90 },
     { src: "assets/photo/Ku-1.jpg", title: "Ku1", date: "9/15/2024", likes: 709 },
-    { src: "assets/photo/Ku-2.jpg", title: "Ku2", date: "9/15/2024", likes: 514 },
     { src: "assets/photo/Jinshi-1.jpg", alt: "Sample Image 1", title: "Jinshi1", date: "9/15/2024", likes: 993 },
-    { src: "assets/photo/Jinshi-2.jpg", alt: "Sample Image 1", title: "Jinshi2", date: "9/15/2024", likes: 791 },
-    { src: "assets/photo/Yanxie-4.jpg", alt: "Yanxie cosplay", title: "Yanxie cosplay", date: "9/15/2024", likes: 998 },
     { src: "assets/photo/Yanxie-3.jpg", alt: "Yanxie cosplay", title: "Yanxie cosplay", date: "9/15/2024", likes: 240950 },
     { src: "assets/photo/Yanxie-2.jpg", alt: "Yanxie cosplay", title: "Yanxie cosplay", date: "9/15/2024", likes: 239089 },
-    { src: "assets/photo/Yanxie-1.jpg", title: "Yanxie cosplay", date: "9/15/2024", likes: 890 },
-    { src: "assets/photo/Sebastian-1.jpg", title: "Sebastian1", date: "9/15/2024", likes: 1308 },
-    { src: "assets/photo/Sebastian-2.jpg", title: "Sebastian2", date: "9/15/2024", likes: 970 },
-    { src: "assets/photo/Liu-1.jpg", title: "Liu cosplay", date: "9/15/2024", likes: 350 },
     { src: "assets/photo/Liu-2.jpg", title: "Liu cosplay", date: "9/15/2024", likes: 350 },
-    { src: "assets/photo/Liu-3.jpg", title: "Liu cosplay", date: "9/15/2024", likes: 471 },
-    { src: "assets/photo/Liu-4.jpg", title: "Liu cosplay", date: "9/15/2024", likes: 6348 }
+    { src: "assets/photo/Liu-3.jpg", title: "Liu cosplay", date: "9/15/2024", likes: 471 }
 ];
 
 // Function to render the cosplay gallery items to the DOM
@@ -190,3 +188,57 @@ function renderCosplayGallery() {
 
 // Call the render function once the HTML document has fully loaded
 document.addEventListener('DOMContentLoaded', renderCosplayGallery);
+
+// Photo gallery popup (My Life bubbles on the home page)
+const galleryModals = {
+    cosplay: {
+        title: "My Cosplay Picshots",
+        subtitle: "Character loading... 100%✨ Let's enjoy the time!",
+        data: cosplayData
+    },
+    cooking: {
+        title: "Lv. Max Chef's Kitchen",
+        subtitle: "Transforming ingredients into art, one dish at a time.",
+        data: galleryData
+    }
+};
+
+// Bubble sizes cycle so the photos look like a cluster of bubbles
+const photoBubbleSizes = ['photo-bubble-lg', 'photo-bubble-md', 'photo-bubble-sm'];
+
+function openGalleryModal(type) {
+    const gallery = galleryModals[type];
+    if (!gallery) return;
+
+    document.getElementById('galleryModalTitle').innerText = gallery.title;
+    document.getElementById('galleryModalSubtitle').innerText = gallery.subtitle;
+
+    let htmlContent = '';
+
+    gallery.data.forEach((item, index) => {
+        const sizeClass = photoBubbleSizes[index % photoBubbleSizes.length];
+        htmlContent += `
+            <div class="photo-bubble ${sizeClass}">
+                <img src="${item.src}" alt="${item.alt || item.title}" loading="lazy">
+                <div class="photo-bubble-overlay">
+                    <h4>${item.title}</h4>
+                    <button class="like-btn" onclick="toggleLike(this)">
+                        🤍 <span class="like-count">${item.likes}</span>
+                    </button>
+                </div>
+            </div>
+        `;
+    });
+
+    document.getElementById('galleryModalBody').innerHTML = htmlContent;
+    document.getElementById('galleryModal').style.display = 'block';
+    document.body.classList.add('modal-open');
+}
+
+function closeGalleryModal() {
+    const modal = document.getElementById('galleryModal');
+    if (!modal) return;
+
+    modal.style.display = 'none';
+    document.body.classList.remove('modal-open');
+}

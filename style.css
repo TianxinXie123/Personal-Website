@@ -14,6 +14,10 @@
 
 /* --- Home Page Layout --- */
 
+html {
+    scroll-behavior: smooth; /* 首屏 <-> Part 2 之间平滑滚动 */
+}
+
 body {
     margin: 0;
     padding: 0;
@@ -344,7 +348,139 @@ body.dark-mode .navbar {
 }
 
 .close-btn:hover {
-    color: var(--deep-purple); 
+    color: var(--deep-purple);
+}
+
+/* --- Photo Gallery Popup (Cosplay / Cooking 气泡弹窗) --- */
+body.modal-open {
+    overflow: hidden; /* 弹窗打开时锁住背后页面的滚动 */
+}
+
+.gallery-modal {
+    overflow-y: auto; /* 照片多时弹窗内部可以滚动 */
+    backdrop-filter: blur(3px);
+}
+
+/* 没有矩形背景：气泡直接浮在暗色遮罩上 */
+.gallery-modal-content {
+    max-width: 1100px;
+    padding: 30px;
+    background: transparent;
+    box-shadow: none;
+    text-align: center;
+    animation: gallery-pop 0.3s ease;
+}
+
+.gallery-modal-content .close-btn {
+    position: fixed;
+    top: 20px;
+    right: 30px;
+    color: #ffffff;
+    font-size: 36px;
+    z-index: 1;
+}
+
+.gallery-modal-content .close-btn:hover {
+    color: var(--main-purple);
+}
+
+.gallery-modal-title {
+    color: #ffffff;
+    margin: 0;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+}
+
+.gallery-modal-content .quote {
+    color: #e2d5ff;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+}
+
+@keyframes gallery-pop {
+    from { opacity: 0; transform: scale(0.95); }
+    to { opacity: 1; transform: scale(1); }
+}
+
+.photo-bubble-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    padding: 10px 0;
+}
+
+.photo-bubble {
+    position: relative;
+    border-radius: 50%;
+    overflow: hidden;
+    flex-shrink: 0;
+    border: 4px solid var(--soft-purple);
+    box-shadow: 0 10px 25px rgba(162, 155, 254, 0.25);
+    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), border-color 0.3s;
+}
+
+.photo-bubble:hover {
+    transform: scale(1.08);
+    border-color: var(--main-purple);
+    z-index: 2;
+}
+
+.photo-bubble img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.photo-bubble-lg { width: 260px; height: 260px; }
+.photo-bubble-md { width: 200px; height: 200px; }
+.photo-bubble-sm { width: 150px; height: 150px; }
+
+.photo-bubble-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(184, 151, 250, 0.85);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 15px;
+    color: white;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.photo-bubble:hover .photo-bubble-overlay {
+    opacity: 1;
+}
+
+.photo-bubble-overlay h4 {
+    margin: 0 0 8px;
+    font-size: 0.95rem;
+}
+
+.photo-bubble-overlay .like-btn {
+    color: white;
+}
+
+@media (max-width: 768px) {
+    .gallery-modal-content {
+        padding: 20px 12px;
+    }
+
+    .photo-bubble-lg,
+    .photo-bubble-md,
+    .photo-bubble-sm {
+        width: 140px;
+        height: 140px;
+    }
+
+    /* 手机没有 hover，直接显示标题 */
+    .photo-bubble-overlay {
+        opacity: 1;
+        background: linear-gradient(transparent 45%, rgba(88, 15, 167, 0.75));
+        justify-content: flex-end;
+    }
 }
 
 /*-----foot--------*/
@@ -392,7 +528,43 @@ body.dark-mode .navbar {
 #phone-number:hover {
     color: var(--bg-color);
 }
-/* --- My Life Page Layout --- */
+/* --- Part 2 : My Life (同页第二屏) --- */
+
+/* 两个部分之间的分隔提示 */
+.part-divider {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 10px 20px 30px;
+    text-align: center;
+}
+
+.part-divider-link {
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    text-decoration: none;
+    font-weight: 600;
+    color: var(--deep-purple);
+    letter-spacing: 1px;
+}
+
+.part-divider-arrow {
+    font-size: 1.6rem;
+    line-height: 1;
+    animation: divider-bounce 1.8s ease-in-out infinite;
+}
+
+@keyframes divider-bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(6px); }
+}
+
+/* 锚点跳转时给顶部导航栏留位置 */
+.life-section {
+    position: relative;
+    scroll-margin-top: 60px;
+}
 
 /* 布局调整：让左侧占20%左右，右侧自适应 */
 .life-layout {
@@ -421,11 +593,13 @@ body.dark-mode .navbar {
 
 /* --- RPG Profile Card (左侧属性卡) --- */
 .rpg-card {
-    background: white;
+    background: var(--card-bg);
     padding: 20px;
     border-radius: 12px;
     box-shadow: 0 4px 15px rgba(0,0,0,0.1);
     font-family: 'Segoe UI', sans-serif;
+    position: sticky; /* 和首屏的 profile-card 保持一致 */
+    top: 70px;
 }
 
 .rpg-header {
@@ -447,22 +621,22 @@ body.dark-mode .navbar {
 }
 
 .rpg-badge {
-    background-color: #eee;
+    background-color: var(--soft-purple);
     font-size: 0.8rem;
     padding: 2px 8px;
     border-radius: 4px;
-    color: #555;
+    color: var(--deep-purple);
 }
 
 .rpg-divider {
     border: 0;
-    border-top: 1px dashed #ddd;
+    border-top: 1px dashed var(--border-color);
     margin: 15px 0;
 }
 
 .rpg-stats h4 {
     font-size: 0.9rem;
-    color: #888;
+    color: var(--subtitle-color);
     margin-bottom: 15px;
 }
 
@@ -477,12 +651,12 @@ body.dark-mode .navbar {
 .stat-icon {
     width: 32px;
     height: 32px;
-    background: #f8f9fa;
+    background: var(--soft-purple);
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
-    color: #555;
+    color: var(--deep-purple);
 }
 
 .stat-info {
@@ -494,7 +668,7 @@ body.dark-mode .navbar {
 .stat-name {
     font-size: 0.85rem;
     font-weight: bold;
-    color: #333;
+    color: var(--text-color);
 }
 
 /* 模仿图片中的彩色 Tag */
@@ -609,13 +783,13 @@ body.dark-mode .navbar {
 .bubble-solid-blue { background-color: var(--main-purple); opacity: 0.9; }
 
 .bubble-text {
-    background-color: #f9f9f9;
-    border: 3px dashed #ccc;
+    background-color: var(--card-bg);
+    border: 3px dashed var(--soft-purple);
     display: flex;
     justify-content: center;
     align-items: center;
     text-align: center;
-    color: #888;
+    color: var(--subtitle-color);
 }
 
 .text-content h3 {
@@ -625,7 +799,7 @@ body.dark-mode .navbar {
 }
 .text-content span {
     font-size: 0.8rem;
-    background: #eee;
+    background: var(--soft-purple);
     padding: 2px 8px;
     border-radius: 10px;
 }
@@ -647,6 +821,19 @@ body.dark-mode .navbar {
 /* --- 移动端适配 (重要！) --- */
 /* 手机屏幕太小，绝对定位会乱，所以变回竖排 */
 @media (max-width: 768px) {
+    .page-wrapper,
+    .life-layout {
+        flex-direction: column;
+    }
+
+    .rpg-sidebar {
+        flex: 1 1 auto;
+    }
+
+    .rpg-card {
+        position: static; /* 手机上不吸顶，避免挡住气泡 */
+    }
+
     .bubble-container {
         height: auto;
         display: flex;
